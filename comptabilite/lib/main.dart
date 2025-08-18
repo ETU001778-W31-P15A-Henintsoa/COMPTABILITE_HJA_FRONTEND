@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/auth/login.dart';
+import 'pages/home/home.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => Login(),
-        '/login': (context) => Login(),
+        '/acceuil': (context) => Home(),
       },
       debugShowCheckedModeBanner: false,
     );

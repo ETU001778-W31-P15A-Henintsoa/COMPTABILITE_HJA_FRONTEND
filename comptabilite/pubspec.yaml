@@ -43,6 +43,7 @@ dev_dependencies:
     sdk: flutter
   url_launcher: ^6.0.20
 
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -57,6 +58,7 @@ dev_dependencies:
 flutter:
   assets:
       - ./lib/pages/assets/img/logo.png
+      - ./lib/config/api.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

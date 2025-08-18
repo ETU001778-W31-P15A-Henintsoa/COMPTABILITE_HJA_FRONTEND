@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../others/image.dart';
 import 'package:flutter/gestures.dart';
-import '../../controllers/login_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../others/image.dart';
+import '../../controllers/login_controller.dart';
+import '../home/home.dart';
+
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -67,8 +69,8 @@ class _FormContent extends StatefulWidget {
 }
 
 class __FormContentState extends State<_FormContent> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _IdentifiantController = TextEditingController();
+  final TextEditingController _MotdepasseController = TextEditingController();
 
   final LoginController _controller = LoginController();
   int _loginAttempts = 0;
@@ -97,6 +99,7 @@ class __FormContentState extends State<_FormContent> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
           TextFormField(
+            controller: _IdentifiantController,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Identifiant manquant';
@@ -116,6 +119,7 @@ class __FormContentState extends State<_FormContent> {
           ),
           _gap(),
           TextFormField(
+            controller: _MotdepasseController,
             validator: (value) {
                 if (value == null || value.isEmpty) {
                     return 'Mot de passe manquant';
@@ -217,13 +221,16 @@ class __FormContentState extends State<_FormContent> {
 
   Future<void> _handleLogin() async {
     if (_formKey.currentState?.validate() ?? false) {
-      String username = _usernameController.text.trim();
-      String password = _passwordController.text.trim();
-                  
-      int login = await _controller.login(username, password, _loginAttempts);
-                  
-      if (_blockedUntil!.isBefore(DateTime.now()) && login == 0) {
+      String id = _IdentifiantController.text.trim();
+      String mdp = _MotdepasseController.text.trim();
 
+      int login = await _controller.login(id, mdp, _loginAttempts);
+                  
+      if (_blockedUntil.isBefore(DateTime.now()) && login == 0) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Home()),
+        );
       } else if (_blockedUntil.isBefore(DateTime.now()) && _loginAttempts >= 6) {
         setState(() {
           _isBlocked = true;
@@ -239,7 +246,6 @@ class __FormContentState extends State<_FormContent> {
       } else if (_blockedUntil!.isBefore(DateTime.now()) && _loginAttempts < 6 && login != 0) {
         setState(() {
           _loginAttempts = login;
-          debugPrint(_loginAttempts.toString());
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
