@@ -16,8 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Comptabilite HJA',
       initialRoute: '/',
       routes: {
-        '/': (context) => Login(),
-        '/acceuil': (context) => Home(),
+        // '/': (context) => Login(),
+        // '/acceuil': (context) => Home(),
+        '/': (context) => Home(),
       },
       debugShowCheckedModeBanner: false,
     );

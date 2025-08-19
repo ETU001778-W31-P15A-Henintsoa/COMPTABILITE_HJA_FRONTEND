@@ -11,5 +11,14 @@ class Images {
     );
   }
 
+    static Widget getLogoPage({double size = 30}) {
+    return Image.asset(
+      './lib/pages/assets/img/logo.png',
+      width: size,
+      height: size,
+        fit: BoxFit.contain,
+    );
+  }
+
 }
 
