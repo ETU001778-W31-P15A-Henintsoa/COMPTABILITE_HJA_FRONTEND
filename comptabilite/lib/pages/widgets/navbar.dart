@@ -21,6 +21,7 @@ class ResponsiveNavBar extends StatelessWidget implements PreferredSizeWidget {
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
+          // title: Text(title),
           backgroundColor: const Color.fromARGB(0, 23, 22, 22),
           elevation: 0,
           titleSpacing: 0,
@@ -48,7 +49,6 @@ class ResponsiveNavBar extends StatelessWidget implements PreferredSizeWidget {
           ],
         ),
         drawer: isLargeScreen ? null : _drawer(),
-        body: const Center(child: Text("Body")),
       ),
     );
   }

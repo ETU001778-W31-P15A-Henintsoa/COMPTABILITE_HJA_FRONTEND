@@ -31,6 +31,7 @@ dependencies:
   shared_preferences: ^2.2.2
   flutter_login_template: ^1.1.0
   http: ^1.2.1
+  path_provider: ^2.1.1
   flutter:
     sdk: flutter
 
@@ -42,6 +43,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   url_launcher: ^6.0.20
+  path: ^1.8.3
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -59,6 +61,7 @@ flutter:
   assets:
       - ./lib/pages/assets/img/logo.png
       - ./lib/config/api.json
+      - ./lib/data/intermediaire.txt
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

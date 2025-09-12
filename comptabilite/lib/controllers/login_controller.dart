@@ -1,5 +1,6 @@
-import '../services/login_service.dart';
 import 'package:flutter/foundation.dart';
+
+import '../services/login_service.dart';
 
 class LoginController {
   final LoginService _loginService = LoginService();

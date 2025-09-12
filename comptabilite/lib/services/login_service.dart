@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:convert';
 
-import '../utils/filereader.dart';
+import '../utils/filemanagement.dart';
 
 class LoginService {
 
@@ -25,7 +25,7 @@ class LoginService {
 
   Future<int> login(String id, String mdp) async {
     try {
-      final apiUrl = await FileReader().apiLink('apilogin');
+      final apiUrl = await FileManagement.apiLink('apilogin');
       debugPrint('API URL: $apiUrl');
       final response = await http.post(
         Uri.parse(apiUrl),

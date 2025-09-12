@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:comptabilite/services/login_service.dart';
+import '../../services/login_service.dart';
 
 import '../widgets/navbar.dart';
 import '../input/date_form.dart';
@@ -19,7 +19,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // _checkSession();
+    AppBar(
+      title: Text('Accueil'),
+    );
   }
 
   @override
