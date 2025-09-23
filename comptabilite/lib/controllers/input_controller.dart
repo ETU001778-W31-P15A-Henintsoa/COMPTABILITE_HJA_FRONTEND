@@ -1,7 +1,7 @@
-import 'package:comptabilite/pages/input/detail_form.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:comptabilite/pages/home/home.dart';
+import 'package:comptabilite/pages/input/detail_form.dart';
 import '../services/input_service.dart';
 
 class InputController {
@@ -10,6 +10,8 @@ class InputController {
   Future<void> stockDateInput(String? month, String? year, String? idRapport, String? libelle, BuildContext context) async {
     try {
       await inputService.stockDateInput(month, year, idRapport);
+      String numeropiece = await inputService.getDocumentNumber(month, year, libelle);
+
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => DetailForm(
@@ -17,6 +19,7 @@ class InputController {
             year: year,
             idr: idRapport,
             libelle: libelle,
+            npiece: numeropiece,
           ),
         ),
       );
@@ -26,19 +29,29 @@ class InputController {
     }
   }
 
-  Future<void> simulation(BuildContext context, String? compte, String? reference, String? amount, String? operation) async {
+  Future<void> insertInput(BuildContext context, Map<String, String> data) async {
     try {
-      await inputService.stockDetailInputS(compte, reference, amount, operation);
-      // Navigator.of(context).push(
-      //   MaterialPageRoute(
-      //     builder: (context) => DetailForm(
-      //       month: month,
-      //       year: year,
-      //       idr: idRapport,
-      //       libelle: libelle,
-      //     ),
-      //   ),
-      // );
+      bool r = await inputService.insertInput(data);
+      if(r) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => Home(),
+        ),
+      );
+      }else{
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text.rich(
+            TextSpan(
+                text: "Une erreur c'est produite",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }      
     } catch (e, stack) {
       debugPrint('Erreur: $e');
       debugPrint('Stack trace: $stack');

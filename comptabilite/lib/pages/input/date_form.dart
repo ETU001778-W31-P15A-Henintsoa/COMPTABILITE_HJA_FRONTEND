@@ -55,7 +55,7 @@ class _DateFormState extends State<DateForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Saisie de rapport : Dates et rapport (Etape 1/2)',
+          'Saisie d\'opérations',
           style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 20),
         ),
       ),
@@ -84,14 +84,14 @@ class _DateFormState extends State<DateForm> {
               children: [
                 
                 // Titre
-                Text(
-                  'Le mois, année et le type d\'opération pour la saisie.',
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: const Color.fromARGB(255, 2, 2, 2),
+                  Text(
+                    'Paramètres 1',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: const Color.fromARGB(255, 2, 2, 2),
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
                 _gap(),
                 _gap(),
 
@@ -180,13 +180,13 @@ class _DateFormState extends State<DateForm> {
                       final map = rapport as Map<String, dynamic>;
                       return DropdownMenuItem<String>(
                         value: map['idr'].toString(),
-                        child: Text(map['libelle'].toString()),
+                        child: Text("${map['notation']} - ${map['libelle']}"),
                       );
                     }).toList(),
                     onChanged: (value) {
                       setState(() {
                         selectedRapport = value;
-                        libelleRapport = rapports.firstWhere((rapport) => rapport['idr'].toString() == value)['libelle'].toString();
+                        libelleRapport = "${rapports.firstWhere((rapport) => rapport['idr'].toString() == value)['notation'].toString()} (${rapports.firstWhere((rapport) => rapport['idr'].toString() == value)['libelle'].toString()})";
                       });
                     },
                   ),

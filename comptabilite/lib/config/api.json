@@ -1,5 +1,7 @@
 {
     "apilogin" : "http://192.168.88.201:3000/utilisateurs/connexion",
     "apirapports" : "http://localhost:3000/rapports",
-    "apiaccounts" : "http://localhost:3000/plans-comptables"
+    "apiaccounts" : "http://localhost:3000/plans-comptables",
+    "apinombrepiece" : "http://localhost:3000/saisies/nombre-pieces",
+    "apiinsertionsaisie" : "http://localhost:3000/saisies/insertion-saisie"
 }

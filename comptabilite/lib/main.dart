@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'pages/auth/login.dart';
 import 'pages/home/home.dart';
 import 'pages/input/date_form.dart';
 
-import 'package:flutter/material.dart';
-// import 'pages/auth/login.dart';
-// import 'pages/home/home.dart';
-// import 'pages/input/date_form.dart';
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Forcer l'orientation portrait (optionnel)
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Home(),
         '/login': (context) => const Login(),
         '/date-form': (context) => const DateForm(),
-        // '/settings': (context) => const SettingsPage(),
+        '/settings': (context) => const SettingsPage(),
       },
       debugShowCheckedModeBanner: false,
     );
